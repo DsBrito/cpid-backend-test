@@ -127,3 +127,7 @@ docker restart company_db_container
 - Para movimentações de saída, é verificado se há estoque suficiente
 - O endpoint `/stock-management/movement` é a maneira recomendada para registrar movimentações, pois ele atualiza automaticamente o estoque
 - O endpoint `/stock-management/summary/{product_name}` fornece uma visão completa do produto e suas movimentações
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aa9117ff-5b42-44d6-aa24-4e2a8be24d97" width="1000" alt="Imagem de exemplo">
+</p>
