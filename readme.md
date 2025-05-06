@@ -40,7 +40,7 @@ app/
 1. Clone o repositório:
    ```bash
    git clone https://github.com/DsBrito/cpid-backend-test.git
-   cd pid-backend-test/
+   cd cpid-backend-test/
    ```
 
 2. Crie e ative um ambiente virtual:
