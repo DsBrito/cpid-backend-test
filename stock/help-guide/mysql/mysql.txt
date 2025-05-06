@@ -1,0 +1,21 @@
+Entre no mysql
+
+```bash
+docker exec -it stock_db_container mysql -uroot -p
+```
+
+Entre com a senha e siga os passos
+```bash
+mysql> CREATE DATABASE cpid_backend_test;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> USE cpid_backend_test
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> exit
+
+```
+
+Após isso, é necessário realizar o migrate do alembic
