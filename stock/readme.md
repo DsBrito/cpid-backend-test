@@ -39,17 +39,18 @@ app/
 
 1. Clone o repositório:
    ```bash
-   git clone 
-   cd 
+   git clone https://github.com/DsBrito/cpid-backend-test.git
+   cd cpid-backend-test/
    ```
 
 2. Crie e ative um ambiente virtual:
+   Entre dentro do diretório cpid-backend-test/
    ```bash
-   python -m venv venv
+   python3 -m venv .venv
    source venv/bin/activate 
    ```
 
-3. Instale as dependências:
+4. Instale as dependências:
    ```bash
       pip install "fastapi[standard]"
       pip install pydantic_settings
@@ -57,7 +58,7 @@ app/
       pip install mysqlclient
    ```
 
-4. Utilize um banco de dados para a visualização (como o DBeaver) e configure as variáveis de ambiente para conexão com o banco de dados:
+5. Utilize um banco de dados para a visualização (como o DBeaver) e configure as variáveis de ambiente para conexão com o banco de dados:
    ```py
    # app/settings/.env
       DB_HOST=127.0.0.1
@@ -67,12 +68,12 @@ app/
       DB_NAME=cpid_backend_test
    ```
 
-5. Execute a aplicação:
+6. Execute a aplicação:
    ```bash
       fastapi dev app/main.py
    ```
 
-6. Acesse a documentação da API:
+7. Acesse a documentação da API:
    ```
    http://localhost:8000/docs
    ```
