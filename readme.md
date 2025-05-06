@@ -51,23 +51,74 @@ app/
 
 3. Instale as dependências:
    ```bash
-   pip install -r requirements.txt
+      pip install "fastapi[standard]"
+      pip install pydantic_settings
+      pip install SQLAlchemy
+      pip install mysqlclient
    ```
 
-4. Configure as variáveis de ambiente para conexão com o banco de dados:
-   ```
-   DATABASE_URL=mysql+mysqlconnector://usuario:senha@localhost:3306/nome_do_banco
+4. Utilize um banco de dados para a visualização (como o DBeaver) e configure as variáveis de ambiente para conexão com o banco de dados:
+   ```py
+   # app/settings/.env
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_USER=root
+      DB_PASS=cpid-test
+      DB_NAME=cpid_backend_test
    ```
 
 5. Execute a aplicação:
    ```bash
-   uvicorn main:app --reload
+      fastapi dev app/main.py
    ```
 
 6. Acesse a documentação da API:
    ```
    http://localhost:8000/docs
    ```
+
+**Importante**: Neste projeto há um diretório `help-guide` caso precise de ajuda. 
+
+# Banco de Dados (Caso precise)
+
+Devemos nos certificar que temos um banco MySQL para que o nosso código se conecte, e por questão de simplicidade, vamos usar `docker` para subir um container de um banco MySQL e conectar à ele. Se você já possui um MySQL instalado na sua máquina você pode usá-lo e seguir para a próxima seção (8. Settings). Caso não possua o `docker` instalado, siga esse passo a passo:
+
+- [WSL 2 && Ubuntu 22.04](https://medium.com/@habbema/guia-de-instala%C3%A7%C3%A3o-do-docker-no-wsl-2-com-ubuntu-22-04-9ceabe4d79e8)
+
+Depois vamos executar um container contendo `mysql`:
+
+```bash
+docker run --name=stock_db_container --restart on-failure -p 3306:3306 -d mysql/mysql-server
+```
+
+Uma vez que o container está no ar, precisamos da senha gerada para o usuário `root`.
+
+```bash
+docker logs stock_db_container 2>&1 | grep GENERATED
+```
+
+Copie a root password que apareceu e salve ela.
+
+Agora vamos alterar a senha do usuário `root`, basta executar o comando abaixo e depois colar a senha que você copiou acima:
+
+```bash
+docker exec -it stock_db_container mysql -uroot -p
+```
+
+Execute os comando SQL para alterar a senha, permitir a conexão com um *visual tool* e já aproveite para criar o banco que vamos utilizar:
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'cpid-test';
+UPDATE mysql.user SET host = '%' WHERE user='root';
+CREATE DATABASE cpid_backend_test;
+quit
+```
+
+Depois disso, aperte CTRL+D para sair e execute:
+
+```bash
+docker restart company_db_container
+```
 
 ## API Endpoints
 
