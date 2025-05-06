@@ -29,8 +29,9 @@ fastapi dev app/main.py
 
 A versão de migrate (para ultimo caso) esta presente nesse diretório
 
+---
 
-### Guia do mini-curso
+# Guia do mini-curso
 
 # 10. Alembic
 
@@ -41,7 +42,7 @@ Para facilitar a criação da tabela `company` no banco de dados, vamos utilizar
 Primeiro, instale e inicie a biblioteca no diretório raiz da aplicação:
 
 ```bash
-# ~/company$
+# ~/raiz$
 pip install alembic
 alembic init alembic
 ```
@@ -53,7 +54,7 @@ Agora passando para as configurações do Alembic, lembra quando eu disse que um
 Altere o arquivo `env.py` para incluir as configurações necessárias.
 
 ```python
-# ~/company/alembic/env.py
+# ~/stock/alembic/env.py
 
 #  ... código omitido
 
@@ -72,8 +73,8 @@ config.set_main_option(
 
 #target_metadata = None
 
-from app.models import company
-target_metadata = company.Base.metadata
+from app.models import tables
+target_metadata = tables.Base.metadata
 
 # ... código omitido 
 ```
